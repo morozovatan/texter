@@ -27,19 +27,38 @@ body{
             input{
                 font-size: 100%;
                 font-style: italic;
+                padding-left: 1rem;
                 border: 1px solid black;
                 width: 85%;
             }
         }
     }
 
-    list{
+    .list{
         display: flex;
-        width: 80%;
-        background-color: black;
+        flex-direction: column;
+       justify-content: center;
         li{
-            margin-top: 10%;
-            background-color: white;
+            display: flex;
+            justify-content: center;
+            height: 5rem; 
+            .list-item {
+                padding-left: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 5px;
+                background-color: white;
+                width: 80%;
+                border: 1px solid black;
+                button{
+                    font-size: 3rem;
+                    width: 5rem;
+                    height: 100%;
+                    border-left: 1px solid black;
+                }
+            }
         }
+        
     }
 }
