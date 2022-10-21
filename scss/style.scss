@@ -1,0 +1,45 @@
+@import "nullstyle.css";
+
+body{
+    font-size: 20px;
+    .card {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: aquamarine;
+        border-bottom: 1px solid black;
+        h1 {
+            background: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .texter{
+            width: 30%;
+            height: 30%;
+            display: flex;
+            button{
+                width: 15%;
+                border: 1px solid black;
+                border-left: 0;
+            }
+            input{
+                font-size: 100%;
+                font-style: italic;
+                border: 1px solid black;
+                width: 85%;
+            }
+        }
+    }
+
+    list{
+        display: flex;
+        width: 80%;
+        background-color: black;
+        li{
+            margin-top: 10%;
+            background-color: white;
+        }
+    }
+}
