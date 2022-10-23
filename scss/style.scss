@@ -3,12 +3,12 @@
 body{
     font-size: 20px;
     .card {
-        height: 100px;
+        min-height: 100px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background: aquamarine;
+        background: #fef3e7;
         border-bottom: 1px solid black;
         h1 {
             background: white;
@@ -19,7 +19,7 @@ body{
             width: 30%;
             height: 30%;
             display: flex;
-            button{
+            .btn-open{
                 width: 15%;
                 border: 1px solid black;
                 border-left: 0;
@@ -31,6 +31,24 @@ body{
                 border: 1px solid black;
                 width: 85%;
             }
+        }
+        .editor{
+            z-index: 1;
+            font-size: 100%;
+            padding-left: 1rem;
+            border: 1px solid black;
+            width: 80%;
+            height: 20rem;
+        }
+        .btn-add{
+            position: relative;
+            bottom: 30px;
+            left: 30rem;
+            z-index: 2;
+            width: 13rem;
+            height: 30px;
+            border: 1px solid black;
+            border-right: 0;   
         }
     }
 
@@ -61,4 +79,10 @@ body{
         }
         
     }
+
+    .disactive{
+        display: none;
+    }
+
+    
 }

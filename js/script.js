@@ -1,12 +1,16 @@
 const App = {
     data: () => ({
         title: 'Texter',
-        myPlaceholder: 'Start texting...',
+        myPlaceholder: 'Enter the title...',
         inputValue: '',
-        notes: []
+        notes: [],
+        editorIsActive: false
     }
     ),
     methods: {
+        openEditor() {
+            this.editorIsActive = !this.editorIsActive
+        },
         addNewNote() {
             if (this.inputValue !== '') {
                 this.notes.push(this.inputValue)
