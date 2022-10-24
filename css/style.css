@@ -58,25 +58,31 @@ body .list {
 }
 body .list li {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   height: 5rem;
 }
-body .list li .list-item {
+body .list li .note-title {
   padding-left: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 1rem;
   background-color: white;
   width: 80%;
   border: 1px solid black;
 }
-body .list li .list-item button {
+body .list li .note-title button {
   font-size: 3rem;
   width: 5rem;
   height: 100%;
   border-left: 1px solid black;
 }
-body .disactive {
+body .list li .note-body {
+  border: 1px solid black;
+  border-top: 0;
+  width: 80%;
+}
+body .invisible {
   display: none;
 }

@@ -1,10 +1,13 @@
 const App = {
     data: () => ({
         title: 'Texter',
-        myPlaceholder: 'Enter the title...',
-        inputValue: '',
+        titlePlaceholder: 'Enter the title...',
+        editorPlaceholder: '... and body',
+        titleValue: '',
+        bodyValue: '',
         notes: [],
-        editorIsActive: false
+        editorIsActive: false,
+
     }
     ),
     methods: {
@@ -12,10 +15,14 @@ const App = {
             this.editorIsActive = !this.editorIsActive
         },
         addNewNote() {
-            if (this.inputValue !== '') {
-                this.notes.push(this.inputValue)
-                this.inputValue = ''
+            if (this.titleValue !== '' && this.bodyValue !== '') {
+                this.notes.push({ title: this.titleValue, body: this.bodyValue, isOpen: false })
+                this.titleValue = ''
+                this.bodyValue = ''
             }
+        },
+        openNote(i) {
+            this.notes[i].isOpen = !this.notes[i].isOpen;
         },
         removeNote(i) {
             this.notes.splice(i, 1)
