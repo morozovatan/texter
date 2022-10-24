@@ -79,8 +79,6 @@ body .list li .note-title button {
   border-left: 1px solid black;
 }
 body .list li .note-body {
-  display: flex;
-  flex-shrink: 1;
   min-height: 5rem;
   padding-left: 1rem;
   padding-top: 1rem;
