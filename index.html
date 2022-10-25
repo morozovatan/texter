@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Texter</title>
     <style>
         [v-cloak] {
             display: none;
@@ -22,9 +22,10 @@
                 <input type="text" :placeholder="titlePlaceholder" v-model="titleValue" @keypress.enter="openEditor">
                 <button class="btn-open" :class="{invisible: editorIsActive }" @click="openEditor">←</button>
             </div>
-            <textarea class="editor" :class="{ invisible: !editorIsActive }" id="" :placeholder="editorPlaceholder"
-                v-model="bodyValue"></textarea>
-            <button class="btn-add" :class="{invisible: !editorIsActive }" @click="addNewNote">←</button>
+            <div class="editor" :class="{ invisible: !editorIsActive }">
+                <textarea id="" :placeholder="editorPlaceholder" v-model="bodyValue"></textarea>
+                <button class="btn-add" @click="addNewNote">←</button>
+            </div>
         </div>
 
         <ul class="list" v-if="notes.length!==0">

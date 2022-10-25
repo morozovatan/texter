@@ -5,6 +5,7 @@ body {
 body .card {
   min-height: 100px;
   display: flex;
+  flex-shrink: 1;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -34,22 +35,24 @@ body .card .texter input {
   width: 85%;
 }
 body .card .editor {
-  z-index: 1;
+  width: 80%;
+  position: relative;
+}
+body .card .editor textarea {
   font-size: 100%;
   padding-left: 1rem;
+  width: 100%;
   border: 1px solid black;
-  width: 80%;
   height: 20rem;
 }
-body .card .btn-add {
-  position: relative;
-  bottom: 30px;
-  left: 30rem;
-  z-index: 2;
+body .card .editor .btn-add {
   width: 13rem;
-  height: 30px;
+  height: 3rem;
   border: 1px solid black;
-  border-right: 0;
+  border-bottom: 0;
+  position: absolute;
+  right: 0;
+  bottom: 4px;
 }
 body .list {
   display: flex;
@@ -80,8 +83,7 @@ body .list li .note-title button {
 }
 body .list li .note-body {
   min-height: 5rem;
-  padding-left: 1rem;
-  padding-top: 1rem;
+  padding: 1rem;
   border: 1px solid black;
   border-top: 0;
   width: 80%;
