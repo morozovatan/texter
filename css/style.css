@@ -18,12 +18,20 @@ body .card h1 {
   font-weight: bold;
 }
 body .card .texter {
-  width: 30%;
+  width: 100%;
   height: 30%;
   display: flex;
+  justify-content: center;
+}
+body .card .texter .btn-close {
+  font-size: 1.5rem;
+  border: 1px solid black;
+  border-left: 0;
+  border-bottom: 0;
+  width: 3%;
 }
 body .card .texter .btn-open {
-  width: 15%;
+  width: 10%;
   border: 1px solid black;
   border-left: 0;
 }
@@ -32,7 +40,12 @@ body .card .texter input {
   font-style: italic;
   padding-left: 1rem;
   border: 1px solid black;
-  width: 85%;
+  width: 25%;
+  height: 2rem;
+}
+body .card .texter .extended {
+  width: 77%;
+  border-bottom: 0;
 }
 body .card .editor {
   width: 80%;

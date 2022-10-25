@@ -12,7 +12,10 @@ const App = {
     ),
     methods: {
         openEditor() {
-            this.editorIsActive = !this.editorIsActive
+            this.editorIsActive = true
+        },
+        closeEditor() {
+            this.editorIsActive = false
         },
         addNewNote() {
             if (this.titleValue !== '' && this.bodyValue !== '') {

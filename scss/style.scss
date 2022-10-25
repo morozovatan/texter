@@ -17,11 +17,19 @@ body{
             font-weight: bold;
         }
         .texter{
-            width: 30%;
+            width: 100%;
             height: 30%;
             display: flex;
+            justify-content: center;
+            .btn-close {
+                font-size: 1.5rem;
+                border: 1px solid black;
+                border-left: 0;
+                border-bottom: 0;
+                width: 3%;
+            }
             .btn-open{
-                width: 15%;
+                width: 10%;
                 border: 1px solid black;
                 border-left: 0;
             }
@@ -30,7 +38,12 @@ body{
                 font-style: italic;
                 padding-left: 1rem;
                 border: 1px solid black;
-                width: 85%;
+                width: 25%;
+                height: 2rem;
+            }
+            .extended{
+                width: 77%;
+                border-bottom: 0;
             }
         }
         .editor{
@@ -52,6 +65,7 @@ body{
                 right: 0;
                 bottom: 4px;
             }
+           
         }
     }
 

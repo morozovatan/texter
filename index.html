@@ -19,11 +19,14 @@
         <div class="card">
             <h1>{{title}}</h1>
             <div class="texter">
-                <input type="text" :placeholder="titlePlaceholder" v-model="titleValue" @keypress.enter="openEditor">
+                <input :class="{extended: editorIsActive}" type="text" :placeholder="titlePlaceholder"
+                    v-model="titleValue" @keypress.enter="openEditor" @keyup.esc="closeEditor">
                 <button class="btn-open" :class="{invisible: editorIsActive }" @click="openEditor">←</button>
+                <button class="btn-close" :class="{invisible: !editorIsActive }" @click="closeEditor">×</button>
             </div>
             <div class="editor" :class="{ invisible: !editorIsActive }">
-                <textarea id="" :placeholder="editorPlaceholder" v-model="bodyValue"></textarea>
+                <textarea id="" :placeholder="editorPlaceholder" v-model="bodyValue"
+                    @keyup.esc="closeEditor"></textarea>
                 <button class="btn-add" @click="addNewNote">←</button>
             </div>
         </div>
