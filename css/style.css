@@ -1,6 +1,6 @@
 @import "nullstyle.css";
 body {
-  font-size: 20px;
+  font-size: 1.4rem;
 }
 body .card {
   min-height: 100px;
@@ -67,17 +67,17 @@ body .card .editor .btn-add {
   right: 0;
   bottom: 4px;
 }
-body .list {
+body .notes {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-body .list li {
+body .notes li {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-body .list li .note-title {
+body .notes li .note-title {
   padding-left: 1rem;
   display: flex;
   justify-content: space-between;
@@ -88,19 +88,22 @@ body .list li .note-title {
   border: 1px solid black;
   background-color: white;
 }
-body .list li .note-title button {
+body .notes li .note-title button {
   font-size: 3rem;
   width: 5rem;
   height: 100%;
   border-left: 1px solid black;
 }
-body .list li .note-body {
+body .notes li .note-body {
   min-height: 5rem;
   padding: 1rem;
   border: 1px solid black;
   border-top: 0;
   width: 80%;
   background-color: white;
+}
+body .notes li .note-body pre {
+  font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
 }
 body .invisible {
   display: none;

@@ -1,7 +1,7 @@
 @import "nullstyle.css";
 
 body{
-    font-size: 20px;
+    font-size: 1.4rem;
     .card {
         min-height: 100px;
         display: flex;
@@ -69,7 +69,7 @@ body{
         }
     }
 
-    .list{
+    .notes{
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -101,6 +101,9 @@ body{
                 border-top:0;
                 width: 80%;
                 background-color: white;
+                pre{
+                    font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
+                }
             }
         }
     }
