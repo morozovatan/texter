@@ -28,7 +28,6 @@
                 <textarea id="note-body" :placeholder="editorPlaceholder" v-model="bodyValue"
                     @keyup.esc="closeEditor"></textarea>
                 <div class="buttonset">
-                    <button class="btn-bold" @click="makeBold">B</button>
                     <button class="btn-add" @click="addNewNote">←</button>
                 </div>
             </div>
@@ -52,7 +51,11 @@
         referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: '#note-body'
+            selector: '#note-body',
+            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify',
+            menu: {
+                edit: {}
+            }
         })
     </script>
     <script src="js/script.js"></script>
