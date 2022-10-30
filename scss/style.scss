@@ -56,16 +56,21 @@ body{
                 border: 1px solid black;
                 height: 20rem;
             }
-            .btn-add {
-                width: 13rem;
-                height: 3rem;
-                border: 1px solid black;
-                border-bottom: 0;
-                position: absolute;
-                right: 0;
-                bottom: 4px;
+            .buttonset{
+                .btn-add {
+                    width: 13rem;
+                    height: 3rem;
+                    border: 1px solid black;
+                    border-bottom: 0;
+                }
+                .btn-bold{
+                    width: 3rem;
+                    height: 3rem;
+                    border: 1px solid black;
+                    border-bottom: 0;
+                    font-weight: bold;
+                }
             }
-           
         }
     }
 

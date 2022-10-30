@@ -25,9 +25,10 @@
                 <button class="btn-close" :class="{invisible: !editorIsActive }" @click="closeEditor">×</button>
             </div>
             <div class="editor" :class="{ invisible: !editorIsActive }">
-                <textarea id="" :placeholder="editorPlaceholder" v-model="bodyValue"
+                <textarea id="note-body" :placeholder="editorPlaceholder" v-model="bodyValue"
                     @keyup.esc="closeEditor"></textarea>
                 <div class="buttonset">
+                    <button class="btn-bold" @click="makeBold">B</button>
                     <button class="btn-add" @click="addNewNote">←</button>
                 </div>
             </div>
@@ -40,13 +41,20 @@
                     <button @click="removeNote(i, $event)">×</button>
                 </div>
                 <div class="note-body" :class="{invisible: !note.isOpen}">
-                    <pre>{{note.body}}</pre>
+                    <output> {{note.body}}</output>
                 </div>
             </li>
         </ul>
         <div v-else>no notes yet...</div>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tiny.cloud/1/tniti97608i51dczxfprh9uwwgtkf5tf90n0yuts4yh6n4cf/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#note-body'
+        })
+    </script>
     <script src="js/script.js"></script>
 </body>
 
