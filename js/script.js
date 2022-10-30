@@ -26,6 +26,7 @@ const App = {
             this.notes[i].isOpen = !this.notes[i].isOpen
         },
         editNote(i) {
+            this.openEditor()
             this.titleValue = this.notes[i].title
             tinymce.activeEditor.setContent(this.notes[i].body)
             this.removeNote(i)
