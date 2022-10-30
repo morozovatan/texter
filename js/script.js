@@ -4,7 +4,6 @@ const App = {
         titlePlaceholder: 'Enter the title...',
         editorPlaceholder: '... and body',
         titleValue: '',
-        bodyValue: '',
         notes: [],
         editorIsActive: false,
     }
@@ -16,22 +15,20 @@ const App = {
         closeEditor() {
             this.editorIsActive = false
         },
-        makeBold() {
-            const b = document.createElement('b')
-            //document.getSelection().surroundContents(b)
-            document.getSelection().getRangeAt(0).surroundContents(b)
-
-            console.log(document.getSelection().getRangeAt(0))
-        },
         addNewNote() {
-            if (this.titleValue !== '' && tinymce.get('note-body').getContent() !== '') {
-                this.notes.push({ title: this.titleValue, body: tinymce.get('note-body').getContent() })
+            if (this.titleValue !== '' && tinymce.activeEditor.getContent() !== '') {
+                this.notes.push({ title: this.titleValue, body: tinymce.activeEditor.getContent(), isOpen: false })
                 this.titleValue = ''
-                this.bodyValue = ''
+                tinymce.activeEditor.setContent('')
             }
         },
         openNote(i) {
-            this.notes[i].isOpen = !this.notes[i].isOpen;
+            this.notes[i].isOpen = !this.notes[i].isOpen
+        },
+        editNote(i) {
+            this.titleValue = this.notes[i].title
+            tinymce.activeEditor.setContent(this.notes[i].body)
+            this.removeNote(i)
         },
         removeNote(i) {
             this.notes.splice(i, 1)
