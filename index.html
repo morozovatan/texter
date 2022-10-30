@@ -41,7 +41,7 @@
                     <button @click="removeNote(i, $event)">×</button>
                 </div>
                 <div class="note-body" :class="{invisible: !note.isOpen}">
-                    <output> {{note.body}}</output>
+                    <span v-html="note.body"></span>
                 </div>
             </li>
         </ul>

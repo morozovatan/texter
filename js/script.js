@@ -24,17 +24,11 @@ const App = {
             console.log(document.getSelection().getRangeAt(0))
         },
         addNewNote() {
-            // if (this.titleValue !== '' && this.bodyValue !== '') {
-            //     this.notes.push({ title: this.titleValue, body: this.bodyValue, isOpen: false })
-            //     this.titleValue = ''
-            //     this.bodyValue = ''
-            // }
-
-            this.notes.push({ title: this.titleValue, body: tinymce.get('note-body').getContent() })
-            // const domNotes = document.querySelector('.notes').querySelectorAll('li')
-            // console.log(domNotes)
-            // domNotes[i].querySelector('note-body').insertAdjacentHTML('afterbegin', notes.body[i])
-
+            if (this.titleValue !== '' && tinymce.get('note-body').getContent() !== '') {
+                this.notes.push({ title: this.titleValue, body: tinymce.get('note-body').getContent() })
+                this.titleValue = ''
+                this.bodyValue = ''
+            }
         },
         openNote(i) {
             this.notes[i].isOpen = !this.notes[i].isOpen;
