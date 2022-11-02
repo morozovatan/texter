@@ -3,9 +3,11 @@ const App = {
         title: 'Texter',
         titlePlaceholder: 'Enter the title...',
         editorPlaceholder: '... and body',
+        searchPlaceholder: 'Looking for something?',
         titleValue: '',
         notes: [],
         editorIsActive: false,
+        wantedValue: ''
     }
     ),
     methods: {
@@ -33,6 +35,15 @@ const App = {
         },
         removeNote(i) {
             this.notes.splice(i, 1)
+        }
+    },
+    computed: {
+        computedNotes() {
+            if (this.wantedValue !== '') {
+                return this.notes.filter(note => note.title.includes(this.wantedValue))
+            }
+            return this.notes
+
         }
     }
 }

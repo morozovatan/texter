@@ -9,7 +9,7 @@ body{
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background: #fef3e7;
+        background: #f6eddb;
         border-bottom: 1px solid black;
         h1 {
             background: white;
@@ -34,9 +34,9 @@ body{
                 border-left: 0;
             }
             input{
-                font-size: 100%;
+                font-size: 1.2rem;
                 font-style: italic;
-                padding-left: 1rem;
+                padding-left: 0.5rem;
                 border: 1px solid black;
                 width: 25%;
                 height: 2rem;
@@ -63,6 +63,31 @@ body{
                     border: 1px solid black;
                     border-bottom: 0;
                 }
+            }
+        }
+    }
+
+    .search {
+        display: flex;
+        justify-content: right;
+        input{
+            font-size: 1.2rem;
+            font-style: italic;
+            padding-left: 0.5rem;
+            border: 1px solid black;
+            border-top: 0;
+            width: 25%;
+            height: 2rem;
+        }
+        .btn-search{
+            border: 1px solid black;
+            border-left: 0;
+            border-top: 0;
+            height: 2rem;
+            width: 2rem;
+            img{
+                width: 70%;
+                height: 70%;
             }
         }
     }
