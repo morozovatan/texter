@@ -58,7 +58,7 @@ body .card .editor textarea {
   border: 1px solid black;
   height: 20rem;
 }
-body .card .editor .buttonset .btn-add {
+body .card .editor .btn-add {
   width: 13rem;
   height: 3rem;
   border: 1px solid black;
@@ -122,7 +122,7 @@ body .notes li .note-body {
   border: 1px solid black;
   border-top: 0;
   width: 80%;
-  background-color: white;
+  background-color: #faf5eb;
 }
 body .notes li .note-body button {
   font-size: 3rem;

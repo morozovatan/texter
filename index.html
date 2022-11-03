@@ -26,9 +26,7 @@
             </div>
             <div class="editor" :class="{ invisible: !editorIsActive }">
                 <textarea id="note-body" :placeholder="editorPlaceholder" @keyup.esc="closeEditor"></textarea>
-                <div class="buttonset">
-                    <button class="btn-add" @click="addNewNote">←</button>
-                </div>
+                <button class="btn-add" @click="addNewNote">←</button>
             </div>
         </div>
         <div class="search">
@@ -39,14 +37,14 @@
         </div>
 
         <ul class="notes" v-if="notes.length!==0">
-            <li v-for="(note, i) in computedNotes">
-                <div class="note-title" @click="openNote(i, $event)">
+            <li v-for="(note, i) in searchedNotes" :key="note.id">
+                <div class="note-title" @click="openNote(note.id)">
                     {{note.title}}
-                    <button @click="removeNote(i, $event)">×</button>
+                    <button @click="removeNote(note.id)">×</button>
                 </div>
                 <div class="note-body" v-if="note.isOpen">
                     <span v-html="note.body"></span>
-                    <button @click="editNote(i, $event)"><img src="img/pencil.svg" alt=""></button>
+                    <button @click="editNote(note.id)"><img src="img/pencil.svg" alt=""></button>
                 </div>
             </li>
         </ul>

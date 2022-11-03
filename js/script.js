@@ -7,7 +7,8 @@ const App = {
         titleValue: '',
         notes: [],
         editorIsActive: false,
-        wantedValue: ''
+        wantedValue: '',
+        currentId: 0
     }
     ),
     methods: {
@@ -19,31 +20,31 @@ const App = {
         },
         addNewNote() {
             if (this.titleValue !== '' && tinymce.activeEditor.getContent() !== '') {
-                this.notes.push({ title: this.titleValue, body: tinymce.activeEditor.getContent(), isOpen: false })
+                this.currentId++
+                this.notes.push({ title: this.titleValue, body: tinymce.activeEditor.getContent(), isOpen: false, id: this.currentId })
                 this.titleValue = ''
                 tinymce.activeEditor.setContent('')
             }
         },
-        openNote(i) {
-            this.notes[i].isOpen = !this.notes[i].isOpen
+        openNote(id) {
+            this.notes.find(note => note.id === id).isOpen = !this.notes.find(note => note.id === id).isOpen
         },
-        editNote(i) {
+        editNote(id) {
             this.openEditor()
-            this.titleValue = this.notes[i].title
-            tinymce.activeEditor.setContent(this.notes[i].body)
-            this.removeNote(i)
+            this.titleValue = this.notes.find(note => note.id === id).title
+            tinymce.activeEditor.setContent(this.notes.find(note => note.id === id).body)
+            this.removeNote(id)
         },
-        removeNote(i) {
-            this.notes.splice(i, 1)
+        removeNote(id) {
+            this.notes.splice(this.notes.findIndex(note => note.id === id), 1)
         }
     },
     computed: {
-        computedNotes() {
+        searchedNotes() {
             if (this.wantedValue !== '') {
-                return this.notes.filter(note => note.title.includes(this.wantedValue))
+                return this.notes.filter(note => note.title.includes(this.wantedValue) || note.body.includes(this.wantedValue))
             }
             return this.notes
-
         }
     }
 }
