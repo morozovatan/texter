@@ -25,7 +25,6 @@ const App = {
         },
         toggleSearch() {
             this.searchByLabel = !this.searchByLabel
-            console.log(this.searchByLabel)
         },
         addNewNote() {
             if (this.titleValue !== '' && tinymce.activeEditor.getContent() !== '') {
@@ -54,6 +53,9 @@ const App = {
         },
         removeNote(id) {
             this.notes.splice(this.notes.findIndex(note => note.id === id), 1)
+        },
+        removeLabel(label) {
+            this.labels.delete(label)
         }
     },
     computed: {

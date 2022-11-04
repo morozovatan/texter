@@ -26,14 +26,21 @@
             </div>
             <div class="editor" :class="{ invisible: !editorIsActive }">
                 <textarea id="note-body" :placeholder="editorPlaceholder" @keyup.esc="closeEditor"></textarea>
-                <button class="btn-add" @click="addNewNote">←</button>
-                <input class="extended" type="text" :placeholder="labelsPlaceholder" v-model="label"
-                    @keypress.enter="addLabel">
+                <div class="bottom">
+                    <input type="text" :placeholder="labelsPlaceholder" v-model="label" @keypress.enter="addLabel">
+                    <ul class="labels" v-if="labels.size!==0">
+                        <li v-for="label in labels" :key="label">
+                            {{label}}
+                            <button @click="removeLabel(label)">×</button>
+                        </li>
+                    </ul>
+                    <button class="btn-add" @click="addNewNote">←</button>
+                </div>
             </div>
         </div>
         <div class="search">
             <input type="text" :placeholder="searchPlaceholder" v-model="wantedValue">
-            <button class="btn-search">
+            <button class="btn-search" @click="toggleSearch">
                 <img src="img/magnifier.svg" alt="">
             </button>
         </div>
@@ -51,9 +58,8 @@
             </li>
         </ul>
         <div v-else>no notes yet...</div>
-
-
     </div>
+
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.tiny.cloud/1/tniti97608i51dczxfprh9uwwgtkf5tf90n0yuts4yh6n4cf/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
