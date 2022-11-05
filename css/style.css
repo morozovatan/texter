@@ -59,26 +59,19 @@ body .card .editor textarea {
   height: 20rem;
 }
 body .card .editor .bottom {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   width: 100%;
-}
-body .card .editor .bottom input {
-  font-size: 1.2rem;
-  font-style: italic;
-  padding-left: 0.5rem;
-  border: 1px solid black;
-  width: 25%;
-  height: 2rem;
 }
 body .card .editor .bottom .labels {
-  padding-left: 1rem;
-  padding-right: 1rem;
   width: 100%;
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   justify-content: flex-start;
+  padding-bottom: 0.5rem;
 }
 body .card .editor .bottom .labels li {
   display: flex;
@@ -98,11 +91,23 @@ body .card .editor .bottom .labels li button {
   font-weight: bold;
   background-color: #fff9ef;
 }
-body .card .editor .bottom .btn-add {
+body .card .editor .bottom div {
+  display: flex;
+  justify-content: space-between;
+}
+body .card .editor .bottom div input {
+  display: flex;
+  font-size: 1.2rem;
+  font-style: italic;
+  padding-left: 0.5rem;
+  border: 1px solid black;
+  width: 25%;
+  height: 2rem;
+}
+body .card .editor .bottom div .btn-add {
   width: 13rem;
   height: 3rem;
   border: 1px solid black;
-  border-bottom: 0;
 }
 body .search {
   display: flex;

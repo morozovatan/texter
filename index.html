@@ -27,14 +27,16 @@
             <div class="editor" :class="{ invisible: !editorIsActive }">
                 <textarea id="note-body" :placeholder="editorPlaceholder" @keyup.esc="closeEditor"></textarea>
                 <div class="bottom">
-                    <input type="text" :placeholder="labelsPlaceholder" v-model="label" @keypress.enter="addLabel">
                     <ul class="labels" v-if="labels.size!==0">
                         <li v-for="label in labels" :key="label">
                             {{label}}
                             <button @click="removeLabel(label)">×</button>
                         </li>
                     </ul>
-                    <button class="btn-add" @click="addNewNote">←</button>
+                    <div>
+                        <input type="text" :placeholder="labelsPlaceholder" v-model="label" @keypress.enter="addLabel">
+                        <button class="btn-add" @click="addNewNote">←</button>
+                    </div>
                 </div>
             </div>
         </div>

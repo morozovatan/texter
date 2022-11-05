@@ -11,7 +11,6 @@ const App = {
         wantedValue: '',
         searchByLabel: false,
         currentId: 0,
-        allLabels: new Set(),
         labels: new Set(),
         label: ''
     }
@@ -36,7 +35,6 @@ const App = {
             }
         },
         addLabel() {
-            this.allLabels.add(this.label)
             this.labels.add(this.label)
             this.label = ''
         },
@@ -61,13 +59,14 @@ const App = {
     computed: {
         searchedNotes() {
             if (this.wantedValue !== '') {
-                if (this.allLabels.has(this.wantedValue) && this.searchByLabel) {
+                if (this.searchByLabel) {
                     return this.notes.filter(note => note.labels.has(this.wantedValue))
                 }
                 return this.notes.filter(note => note.title.includes(this.wantedValue) || note.body.includes(this.wantedValue))
             }
             return this.notes
         }
+
     }
 }
 
