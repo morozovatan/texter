@@ -26,7 +26,7 @@ const App = {
             this.searchByLabel = !this.searchByLabel
         },
         addNewNote() {
-            if (this.titleValue !== '' && tinymce.activeEditor.getContent() !== '') {
+            if (this.isSpaceValid(this.titleValue) && tinymce.activeEditor.getContent() !== '') {
                 this.currentId++
                 this.notes.push({ title: this.titleValue, body: tinymce.activeEditor.getContent(), isOpen: false, id: this.currentId, labels: new Set(this.labels) })
                 this.titleValue = ''
@@ -35,8 +35,10 @@ const App = {
             }
         },
         addLabel() {
-            this.labels.add(this.label)
-            this.label = ''
+            if (this.isSpaceValid(this.label)) {
+                this.labels.add(this.label)
+                this.label = ''
+            }
         },
         openNote(id) {
             this.notes.find(note => note.id === id).isOpen = !this.notes.find(note => note.id === id).isOpen
@@ -54,6 +56,11 @@ const App = {
         },
         removeLabel(label) {
             this.labels.delete(label)
+        },
+        isSpaceValid(s) {
+            if (s === '') return false;
+            if (s.trim() != '') return true;
+            return false;
         }
     },
     computed: {
