@@ -43,7 +43,8 @@
         <div class="search">
             <input type="text" :placeholder="searchPlaceholder" v-model="wantedValue">
             <button class="btn-search" @click="toggleSearch">
-                <img src="img/magnifier.svg" alt="">
+                <span v-if="searchByLabel">label</span>
+                <span v-else>text</span>
             </button>
         </div>
 
@@ -52,7 +53,7 @@
                 <div class="note-title" @click="openNote(note.id)">
                     {{note.title}}
                     <ul class="note-labels" v-if="note.labels.size!==0">
-                        <li v-for="label in note.labels" :key="label">
+                        <li v-for="label in note.labels" :key="label" @click="clickOnLabel(label,$event)">
                             ◦ {{label}}
                         </li>
                     </ul>
@@ -79,7 +80,7 @@
             }
         })
     </script>
-    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@ const App = {
         titlePlaceholder: 'Enter the title...',
         editorPlaceholder: '... and body',
         labelsPlaceholder: 'Add labels maybe?',
-        searchPlaceholder: 'Looking for something?',
+        searchPlaceholder: 'Looking for something by...',
         titleValue: '',
         notes: [],
         editorIsActive: false,
@@ -61,6 +61,12 @@ const App = {
             if (s === '') return false;
             if (s.trim() != '') return true;
             return false;
+        },
+        clickOnLabel(label, event) {
+            event.stopPropagation()
+            console.log(label)
+            this.searchByLabel = true
+            this.wantedValue = label
         }
     },
     computed: {

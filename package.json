@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/morozovatat/texter.git"
+    "url": "git+https://github.com/morozovatan/texter.git"
   },
-  "author": "morozovatat",
+  "author": "morozovatan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/morozovatat/texter/issues"
+    "url": "https://github.com/morozovatan/texter/issues"
   },
-  "homepage": "https://github.com/morozovatat/texter#readme"
+  "homepage": "https://github.com/morozovatan/texter#readme"
 }
