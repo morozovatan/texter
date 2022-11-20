@@ -117,3 +117,111 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.card {
+  min-height: 100px;
+  display: flex;
+  flex-shrink: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #f6eddb;
+  border-bottom: 1px solid black;
+}
+
+.card .texter {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+}
+.card .texter .btn-close {
+  font-size: 1.5rem;
+  border: 1px solid black;
+  border-left: 0;
+  border-bottom: 0;
+  width: 3%;
+}
+.card .texter .btn-open {
+  width: 10%;
+  border: 1px solid black;
+  border-left: 0;
+}
+.card .texter input {
+  font-size: 1.2rem;
+  font-style: italic;
+  padding-left: 0.5rem;
+  border: 1px solid black;
+  width: 25%;
+  height: 2rem;
+}
+.card .texter .extended {
+  width: 77%;
+  border-bottom: 0;
+}
+body .card .editor {
+  width: 80%;
+  position: relative;
+}
+.card .editor textarea {
+  font-size: 100%;
+  padding-left: 1rem;
+  width: 100%;
+  border: 1px solid black;
+  height: 20rem;
+}
+.card .editor .bottom {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.card .editor .bottom .labels {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  padding-bottom: 0.5rem;
+}
+.card .editor .bottom .labels li {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid rgb(167, 143, 118);
+  border-radius: 0.4rem;
+  background-color: #fff9ef;
+  padding: 0.3rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #5b462c;
+}
+.card .editor .bottom .labels li button {
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #fff9ef;
+  color: #5b462c;
+}
+.card .editor .bottom div {
+  display: flex;
+  justify-content: space-between;
+}
+.card .editor .bottom div input {
+  display: flex;
+  font-size: 1.2rem;
+  font-style: italic;
+  padding-left: 0.5rem;
+  border: 1px solid black;
+  width: 25%;
+  height: 2rem;
+}
+.card .editor .bottom div .btn-add {
+  width: 13rem;
+  height: 3rem;
+  border: 1px solid black;
+}
+</style>
