@@ -2,29 +2,30 @@
   <div class="card">
     <div class="texter">
       <input
-        :class="{ extended: editorIsActive }"
         type="text"
-        :placeholder="titlePlaceholder"
-        v-model="note.title"
+        :class="{ extended: data.editorIsActive }"
+        :placeholder="placeholders.titlePlaceholder"
+        v-model="data.note.title"
         @keypress.enter="openEditor"
         @keyup.esc="closeEditor"
       />
       <button
         class="btn-open"
-        :class="{ invisible: editorIsActive }"
+        :class="{ invisible: data.editorIsActive }"
         @click="openEditor"
       >
         ←
       </button>
       <button
         class="btn-close"
-        :class="{ invisible: !editorIsActive }"
+        :class="{ invisible: !data.editorIsActive }"
         @click="closeEditor"
       >
         ×
       </button>
     </div>
-    <div class="editor" :class="{ invisible: !editorIsActive }">
+
+    <div class="editor" :class="{ invisible: !data.editorIsActive }">
       <editor
         id="note-body"
         :init="{
@@ -32,89 +33,116 @@
           toolbar:
             'undo redo | bold italic | alignleft aligncenter alignright alignjustify',
         }"
-        :placeholder="editorPlaceholder"
-        v-model="note.body"
+        :placeholder="placeholders.editorPlaceholder"
+        v-model="data.note.body"
         @keyup.esc="closeEditor"
       />
-
-      <div class="bottom">
-        <ul class="labels" v-if="note.labels.size !== 0">
-          <li v-for="label in note.labels" :key="label">
+      <div class='bottom'>
+        <ul class="labels" v-if="data.note.labels.size !== 0">
+          <li v-for="label in data.note.labels" :key="label">
             {{ label }}
             <button @click="removeLabel(label)">×</button>
-          </li>
+        </li>
         </ul>
         <div>
           <input
             type="text"
-            :placeholder="labelsPlaceholder"
-            v-model="label"
+            :placeholder="placeholders.labelsPlaceholder"
+            v-model="data.label"
             @keypress.enter="addLabel"
           />
           <button class="btn-add" @click="addNewNote">←</button>
         </div>
       </div>
-    </div>
+    </div> 
   </div>
 </template>
 
 <script>
-import Editor from "@tinymce/tinymce-vue";
+import { useNoteStore } from '../stores/noteStorage'
+import Editor from "@tinymce/tinymce-vue"
+import {reactive, computed} from 'vue'
 
 export default {
   components: {
     editor: Editor,
   },
-  data: () => ({
-    titlePlaceholder: "Enter the title...",
-    editorPlaceholder: "... and body",
-    labelsPlaceholder: "Add labels maybe?",
-    editorIsActive: false,
-    label: "",
-    note: {
-      id: 0,
-      title: "",
-      body: "",
-      labels: new Set(),
-      isOpen: false,
-    },
-  }),
-  methods: {
-    openEditor() {
-      this.editorIsActive = true;
-    },
-    closeEditor() {
-      this.editorIsActive = false;
-    },
-    addLabel() {
-      if (this.isSpaceValid(this.label)) {
-        this.note.labels.add(this.label);
-        this.label = "";
+  setup(){
+    const storage = useNoteStore()
+    const placeholders = {
+      titlePlaceholder: "Enter the title...",
+      editorPlaceholder: "... and body",
+      labelsPlaceholder: "Add labels maybe?",
+    }
+    let data = reactive({
+      editorIsActive: false,
+      label: "",
+      currentId: 0,
+      note: reactive({
+        id: 0,
+        title: "",
+        body: "",
+        labels: new Set(),
+        isOpen: false,
+      }),
+    })
+
+    const openEditor = () => {
+      data.editorIsActive = true;
+    }
+    const closeEditor = () => {
+      data.editorIsActive = false;
+    }
+    const addLabel= () => {
+      if (isSpaceValid(data.label)) {
+        data.note.labels.add(data.label);
+        data.label = "";
       }
-    },
-    removeLabel(label) {
-      this.note.labels.delete(label);
-    },
-    isSpaceValid(s) {
+    }
+    const isSpaceValid = (s) => {
       if (s === "") return false;
       if (s.trim() != "") return true;
       return false;
-    },
-    addNewNote() {
-      if (this.isSpaceValid(this.note.title) && this.note.body !== "") {
-        this.$emit("add", this.note);
-        this.note.title = "";
-        this.note.body = "";
-        this.note.labels.clear();
-      }
-    },
-    editNote(title, body, labels) {
-      this.openEditor();
-      this.note.title = title;
-      this.note.body = body;
-      this.note.labels = labels;
-    },
+    }
+    const removeLabel = (label) => {
+      data.note.labels.delete(label)
+    }
+    const addNewNote = () => {
+      if (isSpaceValid(data.note.title) && isSpaceValid(data.note.body)) {
+       
+        data.note.id = data.currentId++;
+        let newNote = {};
+        Object.assign(newNote, data.note);
+        newNote.labels = new Set(data.note.labels);
+        storage.notes.push(newNote)
+        console.log(newNote)
+        data.note.title = "";
+        data.note.body = "";
+        data.note.labels.clear();
+      }    
+    }
+
+    return{
+      data,
+      storage,
+      placeholders,
+
+      openEditor,
+      closeEditor,
+      addLabel,
+      removeLabel,
+      addNewNote,
+    }
   },
+// 
+//   methods: {
+//     editNote(title, body, labels) {
+//       this.openEditor();
+//       this.note.title = title;
+//       this.note.body = body;
+//       this.note.labels = labels;
+//     },
+//   },
 };
 </script>
 
