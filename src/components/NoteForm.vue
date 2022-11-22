@@ -61,7 +61,7 @@
 <script>
 import { useNoteStore } from '../stores/noteStorage'
 import Editor from "@tinymce/tinymce-vue"
-import {reactive, computed} from 'vue'
+import {reactive, watch} from 'vue'
 
 export default {
   components: {
@@ -88,20 +88,20 @@ export default {
     })
 
     const openEditor = () => {
-      data.editorIsActive = true;
+      data.editorIsActive = true
     }
     const closeEditor = () => {
-      data.editorIsActive = false;
+      data.editorIsActive = false
     }
     const addLabel= () => {
       if (isSpaceValid(data.label)) {
-        data.note.labels.add(data.label);
-        data.label = "";
+        data.note.labels.add(data.label)
+        data.label = ""
       }
     }
     const isSpaceValid = (s) => {
-      if (s === "") return false;
-      if (s.trim() != "") return true;
+      if (s === "") return false
+      if (s.trim() != "") return true
       return false;
     }
     const removeLabel = (label) => {
@@ -109,18 +109,36 @@ export default {
     }
     const addNewNote = () => {
       if (isSpaceValid(data.note.title) && isSpaceValid(data.note.body)) {
-       
-        data.note.id = data.currentId++;
-        let newNote = {};
-        Object.assign(newNote, data.note);
-        newNote.labels = new Set(data.note.labels);
+        if(data.note.id === 0){
+          data.note.id = ++data.currentId
+        }
+        let newNote = {}
+        Object.assign(newNote, data.note)
+        newNote.labels = new Set(data.note.labels)
+        if(storage.editedId > 0){
+          storage.notes.splice(
+            storage.notes.indexOf(
+              storage.findNoteById(storage.editedId)
+            ),
+            1
+          )
+          storage.editedId = 0
+        }
         storage.notes.push(newNote)
-        console.log(newNote)
-        data.note.title = "";
-        data.note.body = "";
-        data.note.labels.clear();
+        data.note.title = ""
+        data.note.body = ""
+        data.note.id = 0
+        data.note.labels.clear()
       }    
     }
+    const editNote = watch(() => {
+      if(storage.editedId > 0){
+        openEditor()
+        const editedNote = storage.findNoteById(storage.editedId) 
+        Object.assign(data.note, editedNote)
+        data.note.labels = new Set(editedNote.labels)
+      }
+    })
 
     return{
       data,
@@ -132,17 +150,9 @@ export default {
       addLabel,
       removeLabel,
       addNewNote,
+      editNote,
     }
   },
-// 
-//   methods: {
-//     editNote(title, body, labels) {
-//       this.openEditor();
-//       this.note.title = title;
-//       this.note.body = body;
-//       this.note.labels = labels;
-//     },
-//   },
 };
 </script>
 

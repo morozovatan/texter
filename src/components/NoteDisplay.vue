@@ -1,13 +1,14 @@
 <template>
-  <ul class="notes" v-if="searchedNotes.length !== 0">
-    <li v-for="note in searchedNotes" :key="note.id">
+  <note-search/>
+  <ul class="notes" v-if="storage.notes.length !== 0">
+    <li v-for="note in storage.searchedNotes" :key="note.id">
       <div class="note-title" @click="openNote(note.id)">
         {{ note.title }}
         <ul class="note-labels" v-if="note.labels.size !== 0">
           <li
             v-for="label in note.labels"
             :key="label"
-            @click="clickOnLabel(label, $event)"
+            @click.stop="storage.clickOnLabel(label)"
           >
             ◦ {{ label }}
           </li>
@@ -26,30 +27,38 @@
 </template>
 
 <script>
+import NoteSearch from "./NoteSearch.vue";
+import { useNoteStore } from '../stores/noteStorage'
+
 export default {
-  props: {
-    searchedNotes: {
-      type: Array,
-      required: true,
-    },
-    wantedValue: {
-      type: String,
-    },
+   components: {
+    NoteSearch,
   },
-  methods: {
-    openNote(id) {
-      this.$emit("open", id);
-    },
-    removeNote(id) {
-      this.$emit("remove", id);
-    },
-    clickOnLabel(label, event) {
-      this.$emit("findbylabel", label, event);
-    },
-    editNote(id) {
-      this.$emit("edit", id);
-    },
-  },
+  setup(){
+    const storage = useNoteStore()
+
+    const openNote = (id) => {
+      storage.notes.find((note) => note.id === id).isOpen = !storage.notes.find(
+        (note) => note.id === id
+      ).isOpen;//give a note to this instead id!?
+    }
+    const removeNote = (id) => {
+      storage.notes.splice(
+        storage.notes.findIndex((note) => note.id === id), 1
+        )// replace to indexof!!
+    }
+    const editNote = (id) => {
+      storage.editedId = id
+    }
+
+    return{
+      storage,
+
+      openNote,
+      removeNote,
+      editNote,
+    }
+  }
 };
 </script>
 
