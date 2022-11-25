@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import NoteSearch from "./NoteSearch.vue";
-import NoteList from "./NoteList.vue";
+import NoteSearch from "./NoteDisplaySearch.vue";
+import NoteList from "./NoteDisplayNoteList.vue";
 
 export default {
    components: {

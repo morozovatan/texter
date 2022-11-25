@@ -12,7 +12,7 @@
             ◦ {{ label }}
           </li>
         </ul>
-        <button @click="removeNote(note.id)">×</button>
+        <button @click.stop="removeNote(note)">×</button>
       </div>
       <div class="note-body" v-if="note.isOpen">
         <span v-html="note.body"></span>
@@ -32,24 +32,17 @@
     const openNote = (id) => {
       storage.notes.find((note) => note.id === id).isOpen = !storage.notes.find(
         (note) => note.id === id
-      ).isOpen;//give a note to this instead id!?
+      ).isOpen;
     }
-    const removeNote = (id) => {
-      storage.notes.splice(
-        storage.notes.findIndex((note) => note.id === id), 1
-        )// replace to indexof!!
+    const removeNote = (note) => {
+      // storage.notes.splice(
+      //   storage.notes.findIndex((note) => note.id === id), 1
+      //   )
+      storage.notes.splice(note,1)
     }
     const editNote = (id) => {
       storage.editedId = id
     }
-
-    // return{
-    //   storage,
-
-    //   openNote,
-    //   removeNote,
-    //   editNote,
-    // }
 </script>
 
 <style scoped>
