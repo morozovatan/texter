@@ -1,32 +1,29 @@
 <template>
     <div class="texter">
-      <input
-        type="text"
+      <SimpleInput
         :class="{ extended: editorIsActive }"
         :placeholder="titlePlaceholder"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
-        @keypress.enter="$emit('open')"
-        @keyup.esc="$emit('close')"
+        @pressedEnter="$emit('open')"
       />
-      <button
-        class="btn-open"
+      <NoteButton
         :class="{ invisible: editorIsActive }"
-        @click="$emit('open')"
-      >
+        @buttonClicked = "$emit('open')">
         ←
-      </button>
-      <button
-        class="btn-close"
+      </NoteButton>
+      <NoteButton
         :class="{ invisible: !editorIsActive }"
-        @click="$emit('close')"
-      >
+        style="width: 3%;"
+        @buttonClicked = "$emit('close')">
         ×
-      </button>
+      </NoteButton>
     </div>
 </template>
 
 <script setup>
+import NoteButton from './UI/NoteButton.vue'
+import SimpleInput from "./UI/NoteInput.vue"
 
 defineProps({
   modelValue: {
@@ -43,34 +40,13 @@ defineEmits(['update:modelValue', 'open','close'])
 </script>
 
 <style scoped>
-  .card .texter {
+.texter {
   width: 100%;
   height: 30%;
   display: flex;
   justify-content: center;
 }
-.card .texter .btn-close {
-  font-size: 1.5rem;
-  border: 1px solid black;
-  border-left: 0;
-  border-bottom: 0;
-  width: 3%;
-}
-.card .texter .btn-open {
-  width: 10%;
-  border: 1px solid black;
-  border-left: 0;
-}
-.card .texter input {
-  font-size: 1.2rem;
-  font-style: italic;
-  padding-left: 0.5rem;
-  border: 1px solid black;
-  width: 25%;
-  height: 2rem;
-}
-.card .texter .extended {
+.extended {
   width: 77%;
-  border-bottom: 0;
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <ul class="notes" v-if="storage.notes.length !== 0">
-    <!-- Card -->
     <Card class="note" v-for="note in storage.searchedNotes"
     :note="note"
     :key="note.id"

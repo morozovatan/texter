@@ -1,17 +1,10 @@
 <template>
-  <note-search/>
-  <note-list/>
+  <NoteSearch/>
+  <NoteList/>
 </template>
 
-<script>
+<script setup>
 import NoteSearch from "./NoteDisplaySearch.vue";
 import NoteList from "./NoteDisplayNoteList.vue";
-
-export default {
-   components: {
-    NoteSearch,
-    NoteList,
-  },
-};
 </script>
 
