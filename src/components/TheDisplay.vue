@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import NoteList from "./NoteDisplayNoteList.vue";
+import NoteList from "./TheDisplayNoteList.vue";
 import SearchInput from "./UI/ToggleInput.vue"
 import { useNoteStore } from '../stores/noteStorage'
 

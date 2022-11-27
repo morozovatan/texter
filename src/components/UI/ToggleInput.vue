@@ -5,7 +5,7 @@
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
   />
-  <NoteButton :class = "buttonClass"
+  <SmallButton :class = "buttonClass"
     @buttonClicked = "$emit('toggle')">
     <span v-if="isToggled">
       <slot name="toggled"></slot>  
@@ -13,12 +13,12 @@
     <span v-else>
       <slot name="not-toggled"></slot> 
     </span>
-  </NoteButton>
+  </SmallButton>
 </template>
 
 <script setup>
-import NoteButton from './NoteButton.vue'
-import SimpleInput from "./NoteInput.vue"
+import SmallButton from './SmallButton.vue'
+import SimpleInput from "./SimpleInput.vue"
 
 defineProps({
   modelValue: {

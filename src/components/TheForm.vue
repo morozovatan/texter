@@ -31,7 +31,7 @@
             :placeholder = placeholders.labelsPlaceholder
             v-model="data.label"
             @pressedEnter="addLabel"/>
-          <create-button @buttonClicked="addNewNote">←</create-button>  
+          <CreateButton @buttonClicked="addNewNote">←</CreateButton>  
         </div>
       </div>
     </div> 
@@ -41,10 +41,10 @@
 
 <script setup>
 import { useNoteStore } from '../stores/noteStorage'
-import Editor from "./NoteFormEditor.vue"
+import Editor from "./TheFormEditor.vue"
 import TitleInput from "./UI/ToggleInput.vue"
-import LabelList from "./NoteFormLabelList.vue"
-import LabelInput from "./UI/NoteInput.vue"
+import LabelList from "./LabelList.vue"
+import LabelInput from "./UI/SimpleInput.vue"
 import CreateButton from "./UI/CreateButton.vue"
 import {reactive, watch, computed} from 'vue'
 

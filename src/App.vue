@@ -1,21 +1,13 @@
 <template>
-  <main-title/>
-  <note-form/>
-  <note-display/>
+  <MainTitle/>
+  <NoteForm/>
+  <NoteDisplay/>
 </template>
 
-<script>
-import MainTitle from "./components/MainTitle.vue";
-import NoteForm from "./components/NoteForm.vue";
-import NoteDisplay from "./components/NoteDisplay.vue";
-
-export default {
-  components: {
-    MainTitle,
-    NoteForm,
-    NoteDisplay,
-  },
-};
+<script setup>
+import MainTitle from "./components/TheMainTitle.vue";
+import NoteForm from "./components/TheForm.vue";
+import NoteDisplay from "./components/TheDisplay.vue";
 </script>
 
 <style>

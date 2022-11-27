@@ -13,18 +13,18 @@
 </template>
 
 <script setup>
-  import Card from './NoteDisplayNoteListCard.vue' 
+  import Card from './TheDisplayNoteListCard.vue' 
   import { useNoteStore } from '../stores/noteStorage'
   const storage = useNoteStore()
 
   const openNote = (id) => {
     storage.notes.find((note) => note.id === id).isOpen = !storage.notes.find(
       (note) => note.id === id).isOpen;
-    }
-    const removeNote = (note) => {
-      storage.notes.splice(note,1)
-    }
-    const editNote = (id) => {
-      storage.editedId = id
-    }
+  }
+  const removeNote = (note) => {
+    storage.notes.splice(note,1)
+  }
+  const editNote = (id) => {
+    storage.editedId = id
+  }
 </script>

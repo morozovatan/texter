@@ -3,19 +3,19 @@
   <div class="note-title" @click="$emit('open',note.id)">
     {{ note.title }}
     <LabelList class="note-labels" v-model="note.labels" @labelClicked="$emit('labelClicked',$event)"/>
-    <big-button @buttonClicked="$emit('remove',note)">×</big-button>
+    <BigButton @buttonClicked="$emit('remove',note)">×</BigButton>
   </div>
   <div class="note-body" v-if="note.isOpen">
     <span v-html="note.body"></span>
-    <big-button @buttonClicked="$emit('edit',note.id)">
+    <BigButton @buttonClicked="$emit('edit',note.id)">
       <img src="..\..\public\img\pencil.svg" alt="" />
-    </big-button>
+    </BigButton>
   </div>
 </div>
 </template>
 
 <script setup>
-  import LabelList from './NoteFormLabelList.vue'
+  import LabelList from './LabelList.vue'
   import BigButton from './UI/BigButton.vue'
 
   defineProps({
