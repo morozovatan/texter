@@ -1,26 +1,37 @@
 <template>
   <div class="card">
-    <TitleInput
+    <div class="input-wrapper">
+      <TitleInput
       v-model="data.note.title"
-      :editorIsActive = 'data.editorIsActive'
-      @open="openEditor"
-      @close="closeEditor"
-    />
+      :modelPlaceholder="placeholders.titlePlaceholder"
+      :isToggled = "data.editorIsActive"
+      :buttonClass= "buttonClass"
+      :inputClass = 'inputClass'
+      @toggle="toggleEditor">
+        <template #toggled>
+          <span>×</span>
+        </template>
+        <template #not-toggled>
+          <span>←</span>
+        </template>
+      </TitleInput>
+    </div>
+    
     <div class="editor-wrapper" :class="{ invisible: !data.editorIsActive }">
       <div class='bottom'>
-        <Editor
-          v-model="data.note.body"
-        />
+        <Editor v-model="data.note.body"/>
         <LabelList
         v-model="data.note.labels"
         @remove='removeLabel'
-        />
+        v-slot="props">
+        <button class="labelCross" @click="removeLabel(props.clickedLabel)">×</button>
+        </LabelList>
         <div>
           <LabelInput 
             :placeholder = placeholders.labelsPlaceholder
             v-model="data.label"
             @pressedEnter="addLabel"/>
-          <button class="btn-add" @click="addNewNote">←</button>
+          <create-button @buttonClicked="addNewNote">←</create-button>  
         </div>
       </div>
     </div> 
@@ -31,16 +42,25 @@
 <script setup>
 import { useNoteStore } from '../stores/noteStorage'
 import Editor from "./NoteFormEditor.vue"
-import TitleInput from "./NoteFormTitleInput.vue"
+import TitleInput from "./UI/ToggleInput.vue"
 import LabelList from "./NoteFormLabelList.vue"
 import LabelInput from "./UI/NoteInput.vue"
-import {reactive, watch} from 'vue'
+import CreateButton from "./UI/CreateButton.vue"
+import {reactive, watch, computed} from 'vue'
 
 const storage = useNoteStore()
 
 const placeholders = {
-  labelsPlaceholder: "Add labels maybe?"
+  labelsPlaceholder: "Add labels maybe?",
+  titlePlaceholder: "Enter the title...",
 }
+
+const buttonClass = computed(() => {
+  return {'narrow': data.editorIsActive
+}})
+const inputClass = computed(() => {
+  return {'extended': data.editorIsActive
+}})
 
 let data = reactive({
   editorIsActive: false,
@@ -55,14 +75,10 @@ let data = reactive({
   }),
 })
 
-    const openEditor = () => {
-      data.editorIsActive = true
-    }
-    const closeEditor = () => {
-      data.editorIsActive = false
+    const toggleEditor = () => {
+      data.editorIsActive = !data.editorIsActive
     }
     const addLabel = () => {
-      console.log(data.label)
       if (isSpaceValid(data.label)) {
         data.note.labels.add(data.label)
         data.label = ""
@@ -74,6 +90,7 @@ let data = reactive({
       return false;
     }
     const removeLabel = (label) => {
+      console.log(label)
       data.note.labels.delete(label)
     }
     const addNewNote = () => {
@@ -102,7 +119,7 @@ let data = reactive({
     }
     const editNote = watch(() => {
       if(storage.editedId > 0){
-        openEditor()
+        data.editorIsActive = true
         const editedNote = storage.findNoteById(storage.editedId) 
         Object.assign(data.note, editedNote)
         data.note.labels = new Set(editedNote.labels)
@@ -121,24 +138,31 @@ let data = reactive({
   background: #f6eddb;
   border-bottom: 1px solid black;
 }
-body .card .editor-wrapper {
+.input-wrapper {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+}
+.editor-wrapper {
   width: 80%;
   position: relative;
 }
-.card .editor-wrapper .bottom {
+.editor-wrapper .bottom {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-.card .editor-wrapper .bottom div {
+.editor-wrapper .bottom div {
   display: flex;
   justify-content: space-between;
 }
-.card .editor-wrapper .bottom div .btn-add {
-  width: 13rem;
-  height: 3rem;
-  border: 1px solid black;
+.labelCross {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #5b462c;
+  background-color: transparent;
 }
 </style>

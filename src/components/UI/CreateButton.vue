@@ -1,5 +1,5 @@
 <template>
-    <button @click="$emit('buttonClicked')">
+    <button @click.stop="$emit('buttonClicked')">
         <slot></slot>
     </button>
 </template>
@@ -10,9 +10,8 @@
 
 <style scoped>
 button{
-    width: 10%;
+    width: 13rem;
+    height: 3rem;
     border: 1px solid black;
-    border-left: 0;
-    font-size: 1.2rem;
 }
 </style>

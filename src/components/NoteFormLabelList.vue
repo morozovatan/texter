@@ -1,8 +1,8 @@
 <template>
     <ul class="labels" v-if="modelValue.size !== 0">
-          <li v-for="label in modelValue" :key="label">
+          <li v-for="label in modelValue" :key="label" @click.stop="$emit('labelClicked',label)">
             {{ label }}
-            <button @click="$emit('remove',label)">×</button>
+            <slot :clickedLabel="label"></slot>
         </li>
         </ul>
 </template>
@@ -15,7 +15,7 @@ defineProps({
   }
 })
 
-defineEmits(['remove'])
+defineEmits(['remove', 'labelClicked',])
 </script>
 
 <style scoped>
@@ -41,10 +41,5 @@ defineEmits(['remove'])
   font-style: italic;
   color: #5b462c;
 }
-.labels li button {
-  font-size: 1.2rem;
-  font-weight: bold;
-  background-color: #fff9ef;
-  color: #5b462c;
-}
+
 </style>

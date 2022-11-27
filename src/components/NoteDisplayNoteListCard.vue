@@ -2,25 +2,28 @@
 <div class="note">
   <div class="note-title" @click="$emit('open',note.id)">
     {{ note.title }}
-    <LabelList class="note-labels" v-model="note.labels"/>
-    <button @click.stop="$emit('remove',note)">×</button>
+    <LabelList class="note-labels" v-model="note.labels" @labelClicked="$emit('labelClicked',$event)"/>
+    <big-button @buttonClicked="$emit('remove',note)">×</big-button>
   </div>
   <div class="note-body" v-if="note.isOpen">
     <span v-html="note.body"></span>
-    <button @click="$emit('edit',note.id)">
+    <big-button @buttonClicked="$emit('edit',note.id)">
       <img src="..\..\public\img\pencil.svg" alt="" />
-    </button>
+    </big-button>
   </div>
 </div>
 </template>
 
 <script setup>
-    import LabelList from './NoteFormLabelList.vue'
+  import LabelList from './NoteFormLabelList.vue'
+  import BigButton from './UI/BigButton.vue'
 
-    defineProps({
-        note: Object,
-        required: true,
-    })
+  defineProps({
+    note: Object,
+    required: true,
+  })
+  
+  defineEmits(['open','remove','labelClicked',])
 </script>
 
 <style scoped>
@@ -51,14 +54,6 @@
   justify-content: flex-end;
   padding-bottom: 0.5rem;
 }
-
-button {
-  font-size: 3rem;
-  min-width: 5rem;
-  height: 100%;
-  border-left: 1px solid black;
-} 
-
 .note-body button img {
   height: 2.5rem;
   padding-top: 1rem;

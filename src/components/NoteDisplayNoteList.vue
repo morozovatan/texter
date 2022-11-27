@@ -6,6 +6,7 @@
     @open="openNote"
     @edit="editNote"
     @remove="removeNote"
+    @labelClicked="storage.clickOnLabel"
     />
   </ul>
   <div v-else>no notes yet...</div>
